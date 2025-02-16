@@ -45,6 +45,7 @@ for (const key of Object.keys(denoJson.exports)) {
 const deps: Record<string, string> = {};
 const devDeps: Record<string, string> = {
     "@types/node": "^22.0.0",
+    "yarn": "^1.*"
 };
 
 for (const key of Object.keys(denoJson.imports)) {
@@ -132,3 +133,16 @@ node_modules/**
 bun.lockb`,
     { append: true },
 );
+
+
+const cmd = new Deno.Command("bun", {
+    args: ["run", "npm", "install", "--package-lock-only"],
+    stdout: 'inherit',
+    stderr: 'inherit',
+    cwd: `${pwd}/npm`,
+})
+
+const o = await cmd.output();
+if (o.code !== 0) {
+    throw new Error("Failed to run yarn install --package-lock-only");
+}

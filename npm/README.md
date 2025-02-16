@@ -12,6 +12,8 @@ It is primarily used for testing for various bearz.io modules to make it
 easier to write tests and switch between testing frameworks (deno test and vitest).
 
 [![JSR](https://jsr.io/badges/@bearz/assert)](https://jsr.io/@bearz/assert)
+[![npm version](https://badge.fury.io/js/@bearz%2Fassert.svg)](https://badge.fury.io/js/@bearz%2Fassert)
+[![GitHub version](https://badge.fury.io/gh/bearz-io%2Fjs-assert.svg)](https://badge.fury.io/gh/bearz-io%2Fjs-assert)
 
 ## Documentation
 
@@ -55,14 +57,6 @@ nope(false);
 ## TODO
 
 - [ ] Remove dependency on chai. 
-
-## Notes
-
-- **eng** contains scripts for builds.
-- **npm** contains generated code for the npm module.
-- **src** contains typescript source for deno/jsr.
-- **vitest** is used because bun does not currently support `node:test`.
-- **.test.ts** is used because some icon extensions only grep on extensions.
 
 ## License
 

@@ -1,6 +1,13 @@
 {
   "name": "@bearz/assert",
   "version": "0.0.0-alpha.4",
+  "description": "Bearz assertion library primarily for testing.",
+  "keywords": [
+    "assert",
+    "test",
+    "assertions"
+  ],
+  "homepage": "bearz.io",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bearz-io/js-assert.git"
@@ -153,6 +160,7 @@
   "devDependencies": {
     "picocolors": "^1.0.0",
     "@types/node": "^22.0.0",
+    "yarn": "^1.*",
     "@types/chai": "^5.0.1",
     "@vitest/coverage-v8": "^3.0.5",
     "vite": "^6.1.0",
