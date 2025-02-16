@@ -1,4 +1,4 @@
-name: "sdk ci"
+name: "ci"
 
 on:
   push:
