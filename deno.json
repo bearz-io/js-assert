@@ -55,6 +55,10 @@
             "command": "deno run -A --node-modules-dir=auto npm:vitest --watch",
             "description": "Run tests in watch mode"
         },
+        "bun:install": {
+            "command": "cd ./npm && bun install",
+            "description": "Install npm dependencies"
+        },
         "test:npm": {
             "command": "cd ./npm && npm run test",
             "description": "Run tests in npm"
