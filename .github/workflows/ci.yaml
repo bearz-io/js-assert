@@ -2,8 +2,9 @@ name: "ci"
 
 on:
   push:
-    tags-ignore: "*"
-    paths: '*'
+    tags-ignore: "**"
+    paths: 
+      - '**'
   
 
 jobs:
