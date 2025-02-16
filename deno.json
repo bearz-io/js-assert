@@ -1,8 +1,12 @@
 {
     "name": "@bearz/assert",
-    "version": "0.0.0-alpha.4",
+    "version": "0.0.0",
     "description": "Bearz assertion library primarily for testing.",
-    "keywords": ["assert", "test", "assertions"],
+    "keywords": [
+        "assert",
+        "test",
+        "assertions"
+    ],
     "exports": {
         ".": "./src/mod.ts",
         "./array-includes": "./src/array-includes.ts",
@@ -25,14 +29,14 @@
         "./throws": "./src/throws.ts",
         "./unimplemented": "./src/unimplemented.ts"
     },
-
     "fmt": {
-        "exclude": ["**/*.md"],
+        "exclude": [
+            "**/*.md"
+        ],
         "indentWidth": 4,
         "lineWidth": 100,
         "useTabs": false
     },
-
     "publish": {
         "exclude": [
             "eng",
@@ -45,7 +49,6 @@
             ".prototools"
         ]
     },
-
     "tasks": {
         "test": {
             "command": "deno run -A --node-modules-dir=auto npm:vitest",
@@ -80,8 +83,12 @@
             "description": "Prepare for publish"
         },
         "publish:prep": {
-            "dependencies": ["fmt", "test:all", "npm:audit"],
-            "command": "deno publish --dry-run --allow-dirty",
+            "dependencies": [
+                "fmt",
+                "test:all",
+                "npm:audit"
+            ],
+            "command": "deno publish --dry-run --allow-dirty && cd ./npm && npm publish --dry-run",
             "description": "Prepare for publish"
         },
         "jsr:publish:test": {
@@ -92,7 +99,10 @@
             "command": "cd ./npm && npm publish --dry-run",
             "description": "Test npm publish"
         },
-
+        "version": {
+            "command": "deno run -A ./eng/version.ts",
+            "description": "Set version"
+        },
         "dnt": {
             "command": "deno run -A ./eng/dnt.ts",
             "description": "transoform module into node module"
@@ -102,8 +112,11 @@
             "description": "Run npm audit"
         }
     },
-
-    "exclude": ["npm", ".vscode", ".github"],
+    "exclude": [
+        "npm",
+        ".vscode",
+        ".github"
+    ],
     "imports": {
         "@types/chai": "npm:@types/chai@^5.0.1",
         "@vitest/coverage-v8": "npm:@vitest/coverage-v8@^3.0.5",

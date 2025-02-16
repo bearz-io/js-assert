@@ -147,7 +147,15 @@ if (o.code !== 0) {
 }
 
 const cmd2 = new Deno.Command("deno", {
-    args: ["fmt", "--line-width", "100", "--indent-width", "4", `${pwd}/npm/esm`, `${pwd}/npm/types`],
+    args: [
+        "fmt",
+        "--line-width",
+        "100",
+        "--indent-width",
+        "4",
+        `${pwd}/npm/esm`,
+        `${pwd}/npm/types`,
+    ],
     stdout: "inherit",
     stderr: "inherit",
 });
