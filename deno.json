@@ -1,0 +1,105 @@
+{
+    "name": "@bearz/assert",
+    "version": "0.0.0-alpha.4",
+    "description": "Bearz assertion library primarily for testing.",
+    "keywords": ["assert", "test", "assertions"],
+    "exports": {
+        ".": "./src/mod.ts",
+        "./array-includes": "./src/array-includes.ts",
+        "./assert": "./src/assert.ts",
+        "./assertion-error": "./src/assertion-error.ts",
+        "./debug": "./src/debug.ts",
+        "./equal": "./src/equal.ts",
+        "./exists": "./src/exists.ts",
+        "./fail": "./src/fail.ts",
+        "./instance-of": "./src/instance-of.ts",
+        "./is-error": "./src/is-error.ts",
+        "./nope": "./src/nope.ts",
+        "./not-equal": "./src/not-equal.ts",
+        "./not-instance-of": "./src/not-instance-of.ts",
+        "./not-strict-equal": "./src/not-strict-equal.ts",
+        "./ok": "./src/ok.ts",
+        "./rejects": "./src/rejects.ts",
+        "./strict-equal": "./src/strict-equal.ts",
+        "./string-includes": "./src/string-includes.ts",
+        "./throws": "./src/throws.ts",
+        "./unimplemented": "./src/unimplemented.ts"
+    },
+
+    "fmt": {
+        "exclude": ["**/*.md"],
+        "indentWidth": 4,
+        "lineWidth": 100,
+        "useTabs": false
+    },
+
+    "publish": {
+        "exclude": [
+            "eng",
+            ".vscode",
+            ".github",
+            "**/*.test.ts",
+            "node_modules/**",
+            ".artifacts",
+            "vitest.config.ts",
+            ".prototools"
+        ]
+    },
+
+    "tasks": {
+        "test": {
+            "command": "deno run -A --node-modules-dir=auto npm:vitest",
+            "description": "Run tests"
+        },
+        "test:watch": {
+            "command": "deno run -A --node-modules-dir=auto npm:vitest --watch",
+            "description": "Run tests in watch mode"
+        },
+        "test:npm": {
+            "command": "cd ./npm && npm run test",
+            "description": "Run tests in npm"
+        },
+        "test:bun": {
+            "command": "cd ./npm && npm run test:bun",
+            "description": "Run tests in bun"
+        },
+        "test:all": {
+            "command": "deno run -A --node-modules-dir=auto npm:vitest && deno run -A ./eng/dnt.ts && cd ./npm && npm run test:bun",
+            "description": "Run tests in CI"
+        },
+        "cov": {
+            "command": "deno run -A --node-modules-dir=auto npm:vitest --coverage",
+            "description": "Run test coverage"
+        },
+        "fmt": {
+            "command": "deno fmt && deno lint",
+            "description": "Prepare for publish"
+        },
+        "publish:prep": {
+            "dependencies": ["fmt", "test:all", "npm:audit"],
+            "command": "deno publish --dry-run --allow-dirty",
+            "description": "Prepare for publish"
+        },
+        "publish:test": {
+            "command": "deno publish --dry-run --allow-dirty",
+            "description": "Test publish"
+        },
+        "dnt": {
+            "command": "deno run -A ./eng/dnt.ts",
+            "description": "transoform module into node module"
+        },
+        "npm:audit": {
+            "command": "cd ./npm && npm audit",
+            "description": "Run npm audit"
+        }
+    },
+
+    "exclude": ["npm", ".vscode", ".github"],
+    "imports": {
+        "@types/chai": "npm:@types/chai@^5.0.1",
+        "@vitest/coverage-v8": "npm:@vitest/coverage-v8@^3.0.5",
+        "chai": "npm:chai@^5.2.0",
+        "vite": "npm:vite@^6.1.0",
+        "vitest": "npm:vitest@^3.0.5"
+    }
+}

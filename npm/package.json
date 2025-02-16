@@ -1,0 +1,162 @@
+{
+  "name": "@bearz/assert",
+  "version": "0.0.0-alpha.4",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bearz-io/js-assert.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bearz-io/js-assert/discussions"
+  },
+  "module": "./esm/mod.js",
+  "types": "./types/mod.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./types/mod.d.ts",
+        "default": "./esm/mod.js"
+      }
+    },
+    "./array-includes": {
+      "import": {
+        "types": "./types/array-includes.d.ts",
+        "default": "./esm/array-includes.js"
+      }
+    },
+    "./assert": {
+      "import": {
+        "types": "./types/assert.d.ts",
+        "default": "./esm/assert.js"
+      }
+    },
+    "./assertion-error": {
+      "import": {
+        "types": "./types/assertion-error.d.ts",
+        "default": "./esm/assertion-error.js"
+      }
+    },
+    "./debug": {
+      "import": {
+        "types": "./types/debug.d.ts",
+        "default": "./esm/debug.js"
+      }
+    },
+    "./equal": {
+      "import": {
+        "types": "./types/equal.d.ts",
+        "default": "./esm/equal.js"
+      }
+    },
+    "./exists": {
+      "import": {
+        "types": "./types/exists.d.ts",
+        "default": "./esm/exists.js"
+      }
+    },
+    "./fail": {
+      "import": {
+        "types": "./types/fail.d.ts",
+        "default": "./esm/fail.js"
+      }
+    },
+    "./instance-of": {
+      "import": {
+        "types": "./types/instance-of.d.ts",
+        "default": "./esm/instance-of.js"
+      }
+    },
+    "./is-error": {
+      "import": {
+        "types": "./types/is-error.d.ts",
+        "default": "./esm/is-error.js"
+      }
+    },
+    "./nope": {
+      "import": {
+        "types": "./types/nope.d.ts",
+        "default": "./esm/nope.js"
+      }
+    },
+    "./not-equal": {
+      "import": {
+        "types": "./types/not-equal.d.ts",
+        "default": "./esm/not-equal.js"
+      }
+    },
+    "./not-instance-of": {
+      "import": {
+        "types": "./types/not-instance-of.d.ts",
+        "default": "./esm/not-instance-of.js"
+      }
+    },
+    "./not-strict-equal": {
+      "import": {
+        "types": "./types/not-strict-equal.d.ts",
+        "default": "./esm/not-strict-equal.js"
+      }
+    },
+    "./ok": {
+      "import": {
+        "types": "./types/ok.d.ts",
+        "default": "./esm/ok.js"
+      }
+    },
+    "./rejects": {
+      "import": {
+        "types": "./types/rejects.d.ts",
+        "default": "./esm/rejects.js"
+      }
+    },
+    "./strict-equal": {
+      "import": {
+        "types": "./types/strict-equal.d.ts",
+        "default": "./esm/strict-equal.js"
+      }
+    },
+    "./string-includes": {
+      "import": {
+        "types": "./types/string-includes.d.ts",
+        "default": "./esm/string-includes.js"
+      }
+    },
+    "./throws": {
+      "import": {
+        "types": "./types/throws.d.ts",
+        "default": "./esm/throws.js"
+      }
+    },
+    "./unimplemented": {
+      "import": {
+        "types": "./types/unimplemented.d.ts",
+        "default": "./esm/unimplemented.js"
+      }
+    }
+  },
+  "scripts": {
+    "test": "vitest",
+    "test:bun": "bun run vitest"
+  },
+  "authors": [
+    {
+      "name": "jolt9dev",
+      "email": "dev@jolt9.com"
+    }
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "type": "module",
+  "dependencies": {
+    "chai": "^5.2.0"
+  },
+  "devDependencies": {
+    "picocolors": "^1.0.0",
+    "@types/node": "^22.0.0",
+    "@types/chai": "^5.0.1",
+    "@vitest/coverage-v8": "^3.0.5",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.5"
+  },
+  "_generatedBy": "dnt@dev"
+}
