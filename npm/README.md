@@ -14,6 +14,7 @@ easier to write tests and switch between testing frameworks (deno test and vites
 [![JSR](https://jsr.io/badges/@bearz/assert)](https://jsr.io/@bearz/assert)
 [![npm version](https://badge.fury.io/js/@bearz%2Fassert.svg)](https://badge.fury.io/js/@bearz%2Fassert)
 [![GitHub version](https://badge.fury.io/gh/bearz-io%2Fjs-assert.svg)](https://badge.fury.io/gh/bearz-io%2Fjs-assert)
+[![ci](https://github.com/bearz-io/js-assert/actions/workflows/ci.yaml/badge.svg)](https://github.com/bearz-io/js-assert/actions/workflows/ci.yaml)
 
 ## Documentation
 
