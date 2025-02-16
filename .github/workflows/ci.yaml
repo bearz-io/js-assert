@@ -3,6 +3,7 @@ name: "ci"
 on:
   push:
     tags-ignore: "**"
+    branches: '**'
     paths: 
       - '**'
       - '.github/workflows/ci.yaml'
