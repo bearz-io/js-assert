@@ -44,7 +44,7 @@ for (const key of Object.keys(denoJson.exports)) {
 
 const deps: Record<string, string> = {};
 const devDeps: Record<string, string> = {
-    "@types/node": "^22.0.0"
+    "@types/node": "^22.0.0",
 };
 
 for (const key of Object.keys(denoJson.imports)) {
@@ -74,9 +74,9 @@ console.log(entryPoints);
 await build({
     entryPoints: entryPoints,
     outDir: "./npm",
-    shims: {},
     declaration: "separate",
     esModule: true,
+    shims: {},
     scriptModule: false,
     skipSourceOutput: true,
     compilerOptions: {
@@ -94,7 +94,7 @@ await build({
         license: "MIT",
         authors: [{
             name: "jolt9dev",
-            email: "dev@jolt9.com"
+            email: "dev@jolt9.com",
         }],
         scripts: {
             "test": "vitest",
@@ -129,19 +129,30 @@ await Deno.writeTextFile(
     `vite.config.ts
 .artifacts/**
 node_modules/**
+bun.lock
 bun.lockb`,
     { append: true },
 );
 
-
 const cmd = new Deno.Command("bun", {
     args: ["run", "npm", "install", "--package-lock-only"],
-    stdout: 'inherit',
-    stderr: 'inherit',
+    stdout: "inherit",
+    stderr: "inherit",
     cwd: `${pwd}/npm`,
-})
+});
 
 const o = await cmd.output();
 if (o.code !== 0) {
     throw new Error("Failed to run yarn install --package-lock-only");
+}
+
+const cmd2 = new Deno.Command("deno", {
+    args: ["fmt", "--line-width", "100", "--indent-width", "4", `${pwd}/npm/esm`, `${pwd}/npm/types`],
+    stdout: "inherit",
+    stderr: "inherit",
+});
+
+const o2 = await cmd2.output();
+if (o2.code !== 0) {
+    throw new Error("Failed to run deno fmt");
 }

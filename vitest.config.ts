@@ -10,7 +10,7 @@ export default defineConfig({
     test: {
         "coverage": {
             "provider": "v8",
-            "reporter": ["html-spa", "lcov"],
+            "reporter": ["html-spa", "lcovonly", "cobertura"],
             "reportsDirectory": "./.artifacts/coverage",
         },
         "watch": false,

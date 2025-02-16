@@ -4,8 +4,7 @@ test("assert::assert", () => {
     let throws = false;
     try {
         assert(false, "true is false");
-    }
-    catch (e) {
+    } catch (e) {
         throws = true;
         if (!(e instanceof Error)) {
             throw new Error("Expected an error to be thrown");

@@ -6,8 +6,11 @@ import { assert } from "./assert.js";
  * @param constructor The constructor to check against
  * @param msg The optional message to display if the assertion fails.
  */
-export function instanceOf(value, 
-// deno-lint-ignore no-explicit-any
-constructor, msg) {
+export function instanceOf(
+    value,
+    // deno-lint-ignore no-explicit-any
+    constructor,
+    msg,
+) {
     return assert.instanceOf(value, constructor, msg);
 }

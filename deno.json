@@ -84,10 +84,15 @@
             "command": "deno publish --dry-run --allow-dirty",
             "description": "Prepare for publish"
         },
-        "publish:test": {
+        "jsr:publish:test": {
             "command": "deno publish --dry-run --allow-dirty",
-            "description": "Test publish"
+            "description": "Test jsr publish"
         },
+        "npm:publish:test": {
+            "command": "cd ./npm && npm publish --dry-run",
+            "description": "Test npm publish"
+        },
+
         "dnt": {
             "command": "deno run -A ./eng/dnt.ts",
             "description": "transoform module into node module"

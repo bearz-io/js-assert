@@ -5,8 +5,7 @@ function createMergeProxy(baseObj, extObj) {
         get(_target, prop, _receiver) {
             if (prop in extObj) {
                 return extObj[prop];
-            }
-            else {
+            } else {
                 return baseObj[prop];
             }
         },
@@ -45,8 +44,7 @@ function createMergeProxy(baseObj, extObj) {
         getOwnPropertyDescriptor(_target, prop) {
             if (prop in extObj) {
                 return Reflect.getOwnPropertyDescriptor(extObj, prop);
-            }
-            else {
+            } else {
                 return Reflect.getOwnPropertyDescriptor(baseObj, prop);
             }
         },

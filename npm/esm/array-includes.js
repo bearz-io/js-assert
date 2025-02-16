@@ -7,8 +7,7 @@ export function arrayIncludes() {
                 const expected = arguments[1];
                 if (Array.isArray(expected)) {
                     assert.includeDeepMembers(actual, expected);
-                }
-                else {
+                } else {
                     assert.include(actual, expected);
                 }
             }
@@ -20,8 +19,7 @@ export function arrayIncludes() {
                 const msg = arguments[2];
                 if (Array.isArray(expected)) {
                     assert.includeDeepMembers(actual, expected, msg);
-                }
-                else {
+                } else {
                     assert.include(actual, expected, msg);
                 }
             }

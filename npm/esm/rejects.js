@@ -8,14 +8,15 @@ export async function rejects(fn, errorClassOrMsg, msgIncludesOrMsg, msg) {
     let msgIncludes;
     let err;
     if (typeof errorClassOrMsg !== "string") {
-        if (errorClassOrMsg === undefined ||
+        if (
+            errorClassOrMsg === undefined ||
             errorClassOrMsg.prototype instanceof Error ||
-            errorClassOrMsg.prototype === Error.prototype) {
+            errorClassOrMsg.prototype === Error.prototype
+        ) {
             ErrorClass = errorClassOrMsg;
             msgIncludes = msgIncludesOrMsg;
         }
-    }
-    else {
+    } else {
         msg = errorClassOrMsg;
     }
     let doesThrow = false;
@@ -23,17 +24,17 @@ export async function rejects(fn, errorClassOrMsg, msgIncludesOrMsg, msg) {
     const msgSuffix = msg ? `: ${msg}` : ".";
     try {
         const possiblePromise = fn();
-        if (possiblePromise &&
+        if (
+            possiblePromise &&
             typeof possiblePromise === "object" &&
-            typeof possiblePromise.then === "function") {
+            typeof possiblePromise.then === "function"
+        ) {
             isPromiseReturned = true;
             await possiblePromise;
-        }
-        else {
+        } else {
             throw new Error();
         }
-    }
-    catch (error) {
+    } catch (error) {
         if (!isPromiseReturned) {
             throw new AssertionError(`Function throws when expected to reject${msgSuffix}`);
         }

@@ -8,25 +8,24 @@ export function throws(fn, errorClassOrMsg, msgIncludesOrMsg, msg) {
     let msgIncludes;
     let err;
     if (typeof errorClassOrMsg !== "string") {
-        if (errorClassOrMsg === undefined ||
+        if (
+            errorClassOrMsg === undefined ||
             errorClassOrMsg?.prototype instanceof Error ||
-            errorClassOrMsg?.prototype === Error.prototype) {
+            errorClassOrMsg?.prototype === Error.prototype
+        ) {
             ErrorClass = errorClassOrMsg;
             msgIncludes = msgIncludesOrMsg;
-        }
-        else {
+        } else {
             msg = msgIncludesOrMsg;
         }
-    }
-    else {
+    } else {
         msg = errorClassOrMsg;
     }
     let doesThrow = false;
     const msgSuffix = msg ? `: ${msg}` : ".";
     try {
         fn();
-    }
-    catch (error) {
+    } catch (error) {
         if (ErrorClass) {
             if (error instanceof Error === false) {
                 throw new AssertionError(`A non-Error object was thrown${msgSuffix}`);

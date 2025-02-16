@@ -23,9 +23,13 @@ import { stripAnsiCode } from "./internal.js";
  * @param msgMatches The optional string or RegExp to assert in the error message.
  * @param msg The optional message to display if the assertion fails.
  */
-export function isError(error, 
-// deno-lint-ignore no-explicit-any
-ErrorClass, msgMatches, msg) {
+export function isError(
+    error,
+    // deno-lint-ignore no-explicit-any
+    ErrorClass,
+    msgMatches,
+    msg,
+) {
     const msgSuffix = msg ? `: ${msg}` : ".";
     if (!(error instanceof Error)) {
         throw new AssertionError(`Expected "error" to be an Error object${msgSuffix}}`);
@@ -44,7 +48,9 @@ ErrorClass, msgMatches, msg) {
         msgCheck = msgMatches.test(stripAnsiCode(error.message));
     }
     if (msgMatches && !msgCheck) {
-        msg = `Expected error message to include ${msgMatches instanceof RegExp ? msgMatches.toString() : JSON.stringify(msgMatches)}, but got ${JSON.stringify(error?.message)}${msgSuffix}`;
+        msg = `Expected error message to include ${
+            msgMatches instanceof RegExp ? msgMatches.toString() : JSON.stringify(msgMatches)
+        }, but got ${JSON.stringify(error?.message)}${msgSuffix}`;
         throw new AssertionError(msg);
     }
 }

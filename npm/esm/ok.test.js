@@ -8,8 +8,7 @@ test("assert::ok", () => {
         let threw = false;
         try {
             fn();
-        }
-        catch {
+        } catch {
             threw = true;
         }
         if (!threw) {

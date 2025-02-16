@@ -8,6 +8,8 @@ on:
       - '**'
       - '.github/workflows/ci.yaml'
   
+  schedule:
+    - cron: '12 11 * * *'
 
 jobs:
   build:
@@ -34,8 +36,32 @@ jobs:
         with:
           node-version: "22.x"
 
-      - name: Run Deno TestS
+      - name: Run Deno Tests
         run: deno task test
+
+      - name: Generate Code Coverage
+        if: startsWith(github.ref, 'refs/heads/main') && matrix.os == 'ubuntu-latest'
+        run: deno task cov
+        
+      - name: Upload Code Coverage
+        uses: codecov/codecov-action@v5
+        if: startsWith(github.ref, 'refs/heads/main') && matrix.os == 'ubuntu-latest'
+        with:
+          fail_ci_if_error: true # optional (default = false)
+          files: .artifacts/coverage/cobertura-coverage.xml # optional
+          token: ${{ secrets.CODE_COV_TOKEN }}
+          verbose: true # optional (default = false)
+
+      - name: Zip Code Coverage Report
+        if: startsWith(github.ref, 'refs/heads/main') && matrix.os == 'ubuntu-latest'
+        run: zip -r ./.artifacts/coverage-report.zip .artifacts/coverage
+
+      - name: Publish Code Coverage Report
+        uses: actions/upload-artifact@v4
+        if: startsWith(github.ref, 'refs/heads/main') && matrix.os == 'ubuntu-latest'
+        with:
+          name: coverage-report
+          path: ./.artifacts/coverage-report.zip
 
       - name: Run Bun Install
         run: deno task bun:install
@@ -50,6 +76,10 @@ jobs:
         run: deno task npm:audit
         if: matrix.os == 'ubuntu-latest'
 
-      - name: Publish Dry Run
-        run: deno task publish:test
+      - name: Jsr Publish Dry Run
+        run: deno task jsr:publish:test
+        if: matrix.os == 'ubuntu-latest'
+
+      - name: Npm Publish Dry Run
+        run: deno task npm:publish:test
         if: matrix.os == 'ubuntu-latest'

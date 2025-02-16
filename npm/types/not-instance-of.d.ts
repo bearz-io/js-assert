@@ -5,4 +5,8 @@
  * @param constructor The constructor to check against
  * @param msg The optional message to display if the assertion fails.
  */
-export declare function notInstanceOf<T>(value: unknown, constructor: new (...args: any[]) => T, msg?: string): void;
+export declare function notInstanceOf<T>(
+    value: unknown,
+    constructor: new (...args: any[]) => T,
+    msg?: string,
+): void;
