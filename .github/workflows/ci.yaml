@@ -48,6 +48,7 @@ jobs:
 
       - name: "Npm Audit"
         run: deno task npm:audit
+        if: matrix.os == 'ubuntu-latest'
 
       - name: Publish Dry Run
         run: deno task publish:test

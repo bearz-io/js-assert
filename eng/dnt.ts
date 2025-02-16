@@ -44,8 +44,7 @@ for (const key of Object.keys(denoJson.exports)) {
 
 const deps: Record<string, string> = {};
 const devDeps: Record<string, string> = {
-    "@types/node": "^22.0.0",
-    "yarn": "^1.*"
+    "@types/node": "^22.0.0"
 };
 
 for (const key of Object.keys(denoJson.imports)) {
