@@ -36,16 +36,13 @@ jobs:
         run: deno task test
 
       - name: Run Node Tests
-        run: npm test
-        working-directory: ./npm
+        run: deno task test:npm
 
       - name: Run Bun Tests
-        run: npm test:bun
-        working-directory: ./npm
+        run: deno task test:bun
 
       - name: "Npm Audit"
-        run: npm audit
-        working-directory: ./npm
+        run: deno task npm:audit
 
       - name: Publish Dry Run
         run: deno task publish:test
