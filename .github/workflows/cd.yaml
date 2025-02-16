@@ -67,17 +67,18 @@ jobs:
     permissions:
       contents: write
       id-token: write
+      discussions: write
     steps:
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/v')
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ github.ref_name }}
         run: |
           gh release create "$TAG" \
               --repo="$GITHUB_REPOSITORY" \
               --title="${TAG#v}" \
               --generate-notes \
-              --discussion-category "Announcements"
+              --discussion-category "Releases"
 
 
