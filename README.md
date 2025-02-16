@@ -11,6 +11,8 @@ and leverages the Deno standard library's `@std/assert` module.
 It is primarily used for testing for various bearz.io modules to make it
 easier to write tests and switch between testing frameworks (deno test and vitest).
 
+<img src="https://raw.githubusercontent.com/bearz-io/js/refs/heads/main/eng/assets/bearz.io.png" height="64" />
+
 [![JSR](https://jsr.io/badges/@bearz/assert)](https://jsr.io/@bearz/assert)
 [![npm version](https://badge.fury.io/js/@bearz%2Fassert.svg)](https://badge.fury.io/js/@bearz%2Fassert)
 [![GitHub version](https://badge.fury.io/gh/bearz-io%2Fjs-assert.svg)](https://badge.fury.io/gh/bearz-io%2Fjs-assert)

@@ -12,6 +12,8 @@
  * It is primarily used for testing for various bearz.io modules to make it
  * easier to write tests and switch between testing frameworks (deno test and vitest).
  *
+ * <img src="https://raw.githubusercontent.com/bearz-io/js/refs/heads/main/eng/assets/bearz.io.png" height="64" />
+ * 
  * ## Usage
  * ```typescript
  * import { equal, ok, nope } from "@bearz/assert";
