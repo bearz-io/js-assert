@@ -1,17 +1,17 @@
 /**
- * Asserts that `actual` string includes the `expected` substring value.
+ * Make an assertion that actual includes expected. If not
+ * then throw.
  *
  * @example Usage
- * ```ts
+ * ```ts ignore
  * import { stringIncludes } from "@bearz/assert";
  *
- * arrayIncludes([1, 2, 3], 2); // Doesn't throw
- * arrayIncludes([1, 2, 3], 4); // Throws
+ * stringIncludes("Hello", "ello"); // Doesn't throw
+ * stringIncludes("Hello", "world"); // Throws
  * ```
  *
- * @param actual The array to check
- * @param expected The value to check for.
+ * @param actual The actual string to check for inclusion.
+ * @param expected The expected string to check for inclusion.
  * @param msg The optional message to display if the assertion fails.
- * @returns
  */
 export declare function stringIncludes(actual: string, expected: string, msg?: string): void;

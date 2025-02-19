@@ -1,30 +1,48 @@
-import { assert } from "./assert.js";
-export function arrayIncludes() {
-    switch (arguments.length) {
-        case 2:
-            {
-                const actual = arguments[0];
-                const expected = arguments[1];
-                if (Array.isArray(expected)) {
-                    assert.includeDeepMembers(actual, expected);
-                } else {
-                    assert.include(actual, expected);
-                }
+// Copyright 2018-2025 the Deno authors. MIT license.
+// This module is browser compatible.
+import { deepEqual } from "./deep-equal.js";
+import { format } from "./internal/format.js";
+import { AssertionError } from "./assertion-error.js";
+/**
+ * Make an assertion that `actual` includes the `expected` values. If not then
+ * an error will be thrown.
+ *
+ * Type parameter can be specified to ensure values under comparison have the
+ * same type.
+ *
+ * @example Usage
+ * ```ts ignore
+ * import { arrayIncludes } from "@bearz/assert";
+ *
+ * arrayIncludes([1, 2], [2]); // Doesn't throw
+ * arrayIncludes([1, 2], [3]); // Throws
+ * ```
+ *
+ * @typeParam T The type of the elements in the array to compare.
+ * @param actual The array-like object to check for.
+ * @param expected The array-like object to check for.
+ * @param msg The optional message to display if the assertion fails.
+ */
+export function arrayIncludes(actual, expected, msg) {
+    const missing = [];
+    for (let i = 0; i < expected.length; i++) {
+        let found = false;
+        for (let j = 0; j < actual.length; j++) {
+            if (deepEqual(expected[i], actual[j])) {
+                found = true;
+                break;
             }
-            break;
-        case 3:
-            {
-                const actual = arguments[0];
-                const expected = arguments[1];
-                const msg = arguments[2];
-                if (Array.isArray(expected)) {
-                    assert.includeDeepMembers(actual, expected, msg);
-                } else {
-                    assert.include(actual, expected, msg);
-                }
-            }
-            break;
-        default:
-            throw new Error("arrayIncludes() expects either 2 or 3 arguments");
+        }
+        if (!found) {
+            missing.push(expected[i]);
+        }
     }
+    if (missing.length === 0) {
+        return;
+    }
+    const msgSuffix = msg ? `: ${msg}` : ".";
+    msg = `Expected actual: "${format(actual)}" to include: "${
+        format(expected)
+    }"${msgSuffix}\nmissing: ${format(missing)}`;
+    throw new AssertionError(msg);
 }

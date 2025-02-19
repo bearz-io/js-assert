@@ -4,9 +4,13 @@
  */
 export interface AssertionErrorOptions extends ErrorOptions {
     /**
-     * The target of the assertion.
+     * The expected value of the assertion.
      */
-    target?: unknown;
+    expected?: unknown;
+    /**
+     * The actual value of the assertion.
+     */
+    actual?: unknown;
     /**
      * A link to the documentation for the assertion.
      */
@@ -37,11 +41,20 @@ export declare class AssertionError extends Error {
      * @param options - The options for the error.
      */
     constructor(message: string, options?: AssertionErrorOptions);
+    /**
+     * Determines if the given error is an `AssertionError`.
+     * @param e The error to check.
+     * @returns `true` if the error is an `AssertionError`, otherwise `false`.
+     */
     static is(e: unknown): e is AssertionError;
     /**
-     * The target of the assertion.
+     * The expected of the assertion.
      */
-    target?: unknown;
+    expected?: unknown;
+    /**
+     * The actual value of the assertion.
+     */
+    actual?: unknown;
     /**
      * A link to the documentation for the assertion.
      */

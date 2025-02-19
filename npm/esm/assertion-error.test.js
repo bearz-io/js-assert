@@ -1,4 +1,5 @@
-import { test } from "vitest";
+import "./_dnt.test_polyfills.js";
+import { test } from "@bearz/testing";
 import { AssertionError } from "./assertion-error.js";
 test("assert::AssertionError - constructor", () => {
     const e1 = new AssertionError("Assertion failed");
@@ -8,12 +9,12 @@ test("assert::AssertionError - constructor", () => {
     if (e1.link !== "https://jsr.io/@bearz/assert/docs/assert-error") {
         throw new Error("Expected link to be 'https://jsr.io/@bearz/assert/docs/assert-error'");
     }
-    if (e1.target !== undefined) {
+    if (e1.expected !== undefined) {
         throw new Error("Expected target to be undefined");
     }
     const e2 = new AssertionError("Assertion failed", {
         link: "https://example.com/docs",
-        target: "someObject",
+        expected: "someObject",
     });
     if (e2.message !== "Assertion failed") {
         throw new Error("Expected message to be 'Assertion failed'");
@@ -21,7 +22,7 @@ test("assert::AssertionError - constructor", () => {
     if (e2.link !== "https://example.com/docs") {
         throw new Error("Expected link to be 'https://example.com/docs'");
     }
-    if (e2.target !== "someObject") {
+    if (e2.expected !== "someObject") {
         throw new Error("Expected target to be 'someObject'");
     }
 });

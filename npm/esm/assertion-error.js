@@ -26,15 +26,25 @@ export class AssertionError extends Error {
         super(message, options);
         this.name = "AssertionError";
         this.link = options?.link ?? "https://jsr.io/@bearz/assert/docs/assert-error";
-        this.target = options?.target;
+        this.expected = options?.expected;
+        this.actual = options?.actual;
     }
+    /**
+     * Determines if the given error is an `AssertionError`.
+     * @param e The error to check.
+     * @returns `true` if the error is an `AssertionError`, otherwise `false`.
+     */
     static is(e) {
         return e instanceof AssertionError || e instanceof Error && e.name === "AssertionError";
     }
     /**
-     * The target of the assertion.
+     * The expected of the assertion.
      */
-    target;
+    expected;
+    /**
+     * The actual value of the assertion.
+     */
+    actual;
     /**
      * A link to the documentation for the assertion.
      */

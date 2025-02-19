@@ -12,6 +12,8 @@
  * It is primarily used for testing for various bearz.io modules to make it
  * easier to write tests and switch between testing frameworks (deno test and vitest).
  *
+ * <img src="https://raw.githubusercontent.com/bearz-io/js/refs/heads/main/eng/assets/bearz.io.png" height="64" />
+ *
  * ## Usage
  * ```typescript
  * import { equal, ok, nope } from "@bearz/assert";
@@ -51,7 +53,7 @@
  * @license MIT
  */
 export * from "./array-includes.js";
-export * from "./assert.js";
+export * from "./truthy.js";
 export * from "./assertion-error.js";
 export * from "./debug.js";
 export * from "./equal.js";
@@ -59,13 +61,13 @@ export * from "./exists.js";
 export * from "./fail.js";
 export * from "./instance-of.js";
 export * from "./is-error.js";
-export * from "./nope.js";
+export * from "./falsy.js";
 export * from "./not-equal.js";
 export * from "./not-instance-of.js";
 export * from "./not-strict-equal.js";
-export * from "./ok.js";
 export * from "./rejects.js";
 export * from "./strict-equal.js";
 export * from "./string-includes.js";
 export * from "./throws.js";
+export * from "./truthy.js";
 export * from "./unimplemented.js";

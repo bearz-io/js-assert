@@ -1,4 +1,5 @@
-import { test } from "vitest";
+import "./_dnt.test_polyfills.js";
+import { test } from "@bearz/testing";
 import { equal } from "./equal.js";
 test("assert::equal", () => {
     equal(1, 1);
@@ -12,6 +13,7 @@ test("assert::equal", () => {
     equal(false, false);
     equal(0, 0);
     equal(-0, -0);
+    equal(new Set([1, 2, 3]), new Set([1, 2, 3]));
     function throws(fn, msg) {
         let threw = false;
         try {

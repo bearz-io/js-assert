@@ -31,12 +31,6 @@
         "default": "./esm/array-includes.js"
       }
     },
-    "./assert": {
-      "import": {
-        "types": "./types/assert.d.ts",
-        "default": "./esm/assert.js"
-      }
-    },
     "./assertion-error": {
       "import": {
         "types": "./types/assertion-error.d.ts",
@@ -79,10 +73,10 @@
         "default": "./esm/is-error.js"
       }
     },
-    "./nope": {
+    "./falsy": {
       "import": {
-        "types": "./types/nope.d.ts",
-        "default": "./esm/nope.js"
+        "types": "./types/falsy.d.ts",
+        "default": "./esm/falsy.js"
       }
     },
     "./not-equal": {
@@ -101,12 +95,6 @@
       "import": {
         "types": "./types/not-strict-equal.d.ts",
         "default": "./esm/not-strict-equal.js"
-      }
-    },
-    "./ok": {
-      "import": {
-        "types": "./types/ok.d.ts",
-        "default": "./esm/ok.js"
       }
     },
     "./rejects": {
@@ -133,6 +121,12 @@
         "default": "./esm/throws.js"
       }
     },
+    "./truthy": {
+      "import": {
+        "types": "./types/truthy.d.ts",
+        "default": "./esm/truthy.js"
+      }
+    },
     "./unimplemented": {
       "import": {
         "types": "./types/unimplemented.d.ts",
@@ -141,8 +135,8 @@
     }
   },
   "scripts": {
-    "test": "vitest",
-    "test:bun": "bun run vitest"
+    "test": "node --test",
+    "test:bun": "bun test"
   },
   "authors": [
     {
@@ -154,16 +148,11 @@
     "node": ">=22"
   },
   "type": "module",
-  "dependencies": {
-    "chai": "^5.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "picocolors": "^1.0.0",
-    "@types/node": "^22.0.0",
-    "@types/chai": "^5.0.1",
-    "@vitest/coverage-v8": "^3.0.5",
-    "vite": "^6.1.0",
-    "vitest": "^3.0.5"
+    "@types/node": "^22.13.4",
+    "@bearz/testing": "^0.0.0"
   },
   "_generatedBy": "dnt@dev"
 }

@@ -1,12 +1,26 @@
+/** Any constructor */
+export type AnyConstructor = new (...args: any[]) => any;
+/** Gets constructor type */
+export type GetConstructorType<T extends AnyConstructor> = InstanceType<T>;
 /**
- * Asserts that `value` is an instance of `constructor`.
+ * Make an assertion that `obj` is an instance of `type`.
+ * If not then throw.
  *
- * @param value The value to check
- * @param constructor The constructor to check against
+ * @example Usage
+ * ```ts ignore
+ * import { assertInstanceOf } from "@std/assert";
+ *
+ * assertInstanceOf(new Date(), Date); // Doesn't throw
+ * assertInstanceOf(new Date(), Number); // Throws
+ * ```
+ *
+ * @typeParam T The expected type of the object.
+ * @param actual The object to check.
+ * @param expectedType The expected class constructor.
  * @param msg The optional message to display if the assertion fails.
  */
-export declare function instanceOf<T>(
-    value: unknown,
-    constructor: new (...args: any[]) => T,
+export declare function instanceOf<T extends abstract new (...args: any[]) => any>(
+    actual: unknown,
+    expectedType: T,
     msg?: string,
-): asserts value is T;
+): asserts actual is InstanceType<T>;
