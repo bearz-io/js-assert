@@ -2,16 +2,14 @@
 
 ## Overview
 
-An opinated assertion library for testing jolt9/bearz typescript/javascript
-libraries. 
+The bearz/assert is now a remix of the `std/assert` library from Deno to enable
+modern asserts for Deno, Bun, and NodeJs; available as both npm and jsr
+packages.
 
-The library current wraps the chai assertion library
-and leverages the Deno standard library's `@std/assert` module.
- 
-It is primarily used for testing for various bearz.io modules to make it
-easier to write tests and switch between testing frameworks (deno test and vitest).
+The overall goal here is to make it easier to write javascript libaries
+that target multiple JavaScript runtimes.
 
-<img src="https://raw.githubusercontent.com/bearz-io/js/refs/heads/main/eng/assets/bearz.io.png" height="64" />
+![logo](https://raw.githubusercontent.com/bearz-io/js/refs/heads/main/eng/assets/bearz.io.png)
 
 [![JSR](https://jsr.io/badges/@bearz/assert)](https://jsr.io/@bearz/assert)
 [![npm version](https://badge.fury.io/js/@bearz%2Fassert.svg)](https://badge.fury.io/js/@bearz%2Fassert)
@@ -22,12 +20,14 @@ easier to write tests and switch between testing frameworks (deno test and vites
 Documentation is available on [jsr.io](https://jsr.io/@bearz/assert/doc)
 
 ## Usage
-```typescript
-import { equal, ok, nope } from "@bearz/assert";
 
+```typescript
+import { equal, ok, falsy } from "@bearz/assert";
+
+// performs a deep equals
 equal(1, 1);
 ok(true);
-nope(false);
+fasly(false);
 ```
 
 ## Classes
@@ -54,16 +54,39 @@ nope(false);
 - `strictEqual` - asserts that two values are strictly equal (same ref).
 - `stringIncludes` - asserts that a string includes a value.
 - `throws` - asserts that a function throws an exception.
+- `truthy` - asserts that a value is truthy.
 - `unimplemented` - asserts that a test is not yet implemented.
 
 ## TODO
 
-- [ ] Remove dependency on chai. 
+- [x] Remove dependency on chai
+
+## Notes
+
+This module is now a remix of the std/assert library from deno to enable
+modern asserts for Deno, Bun, and NodeJs; available as both npm and jsr
+packages.
+
+The `@bearz/testing` and `@bearz/assert` modules can be used together to reduce the
+amount of shims and cruft when using `denoland/dnt` to publish jsr and npm modules.
+
+The methods are renamed to enable importing all asserts as a single assert
+object. To demonstrate:
+
+```ts
+import * as assert from "@bearz/assert"
+
+assert.ok()
+
+```
+
+If the @std lib deno packages or something similar were available as official npm
+and jsr packages, this package would not exist.  It's only here to reduce the
+friction of writing cross runtime libraries.
 
 ## License
 
 [MIT License](./LICENSE.md)
 
-is_error, unimplemented, rejects, and internal functions are from
-the deno @std/assert module which is also MIT licensed.
+The majority of the code is now from std/assert which is under the MIT license.
 https://jsr.io/@std/assert/1.0.6/LICENSE

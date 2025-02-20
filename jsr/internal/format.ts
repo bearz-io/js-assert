@@ -1,5 +1,39 @@
 // Copyright 2018-2025 the Deno authors. MIT license.
 // This module is browser compatible.
+import { globals } from "./globals.ts";
+
+let f = function (v: unknown): string {
+    return `"${String(v).replace(/(?=["\\])/g, "\\")}"`;
+};
+
+if (globals.process && !globals.Deno) {
+    const importName = "node:util";
+    const { inspect } = await import(importName);
+
+    f = function (v: unknown): string {
+        return inspect(v, {
+            depth: Infinity,
+            sorted: true,
+            compact: false,
+            getters: true,
+            maxStringLength: Infinity,
+            maxArrayLength: Infinity,
+        });
+    };
+} else if (globals.Deno) {
+    f = function (v: unknown): string {
+        return globals.Deno.inspect(v, {
+            depth: Infinity,
+            sorted: true,
+            trailingComma: true,
+            compact: false,
+            iterableLimit: Infinity,
+            // getters should be true in assertEquals.
+            getters: true,
+            strAbbreviateSize: Infinity,
+        });
+    };
+}
 
 /**
  * Converts the input into a string. Objects, Sets and Maps are sorted so as to
@@ -20,18 +54,5 @@
  * ```
  */
 export function format(v: unknown): string {
-    // deno-lint-ignore no-explicit-any
-    const { Deno } = globalThis as any;
-    return typeof Deno?.inspect === "function"
-        ? Deno.inspect(v, {
-            depth: Infinity,
-            sorted: true,
-            trailingComma: true,
-            compact: false,
-            iterableLimit: Infinity,
-            // getters should be true in assertEquals.
-            getters: true,
-            strAbbreviateSize: Infinity,
-        })
-        : `"${String(v).replace(/(?=["\\])/g, "\\")}"`;
+    return f(v);
 }

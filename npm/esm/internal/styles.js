@@ -3,11 +3,7 @@
 // A module to print ANSI terminal colors. Inspired by chalk, kleur, and colors
 // on npm.
 // This code is vendored from `fmt/colors.ts`.
-// deno-lint-ignore no-explicit-any
-import * as dntShim from "../_dnt.shims.js";
-const { Deno } = dntShim.dntGlobalThis;
-const noColor = typeof Deno?.noColor === "boolean" ? Deno.noColor : false;
-const enabled = !noColor;
+import { enabled } from "./color-detection.js";
 function code(open, close) {
     return {
         open: `\x1b[${open.join(";")}m`,

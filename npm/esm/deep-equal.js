@@ -1,6 +1,6 @@
 // Copyright 2018-2025 the Deno authors. MIT license.
 // This module is browser compatible.
-import * as dntShim from "./_dnt.shims.js";
+import { globals } from "./internal/globals.js";
 function isKeyedCollection(x) {
     return x instanceof Set || x instanceof Map;
 }
@@ -34,7 +34,7 @@ function getKeysDeep(obj) {
     return keys;
 }
 // deno-lint-ignore no-explicit-any
-const Temporal = dntShim.dntGlobalThis.Temporal ??
+const Temporal = globals.Temporal ??
     new Proxy({}, { get: () => {} });
 /** A non-exhaustive list of prototypes that can be accurately fast-path compared with `String(instance)` */
 const stringComparablePrototypes = new Set(

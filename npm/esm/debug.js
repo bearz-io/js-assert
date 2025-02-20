@@ -1,10 +1,9 @@
-import * as dntShim from "./_dnt.shims.js";
-const g = dntShim.dntGlobalThis;
+import { globals } from "./internal/globals.js";
 let debugTests = false;
-if (g.DEBUG_TESTS) {
+if (globals.DEBUG_TESTS) {
     debugTests = true;
 }
-if (g.process && g.process.env && g.process.env.DEBUG_TESTS) {
+if (globals.process && globals.process.env && globals.process.env.DEBUG_TESTS) {
     debugTests = true;
 }
 /**

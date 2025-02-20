@@ -76,6 +76,7 @@ test("noColor", async function () {
                 clearEnv: true,
                 env: {
                     NO_COLOR: fixture,
+                    TERM: "xterm-256color",
                 },
             });
             const { stdout } = await command.output();

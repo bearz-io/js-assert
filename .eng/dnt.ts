@@ -88,10 +88,11 @@ await build({
         dependencies: deps,
         devDependencies: devDeps,
     },
-    postBuild() {
+    async postBuild() {
         // steps to run after building and before running the tests
         Deno.copyFileSync(`${pwd}/LICENSE.md`, `${pwd}/npm/LICENSE.md`);
         Deno.copyFileSync(`${pwd}/README.md`, `${pwd}/npm/README.md`);
+        await import("./replace-dnt-shim.ts");
     },
 });
 

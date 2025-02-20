@@ -1,6 +1,6 @@
 {
   "name": "@bearz/assert",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Bearz assertion library primarily for testing.",
   "keywords": [
     "assert",

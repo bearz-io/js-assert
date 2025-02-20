@@ -1,5 +1,36 @@
 // Copyright 2018-2025 the Deno authors. MIT license.
 // This module is browser compatible.
+import { globals } from "./globals.js";
+let f = function (v) {
+    return `"${String(v).replace(/(?=["\\])/g, "\\")}"`;
+};
+if (globals.process && !globals.Deno) {
+    const importName = "node:util";
+    const { inspect } = await import(importName);
+    f = function (v) {
+        return inspect(v, {
+            depth: Infinity,
+            sorted: true,
+            compact: false,
+            getters: true,
+            maxStringLength: Infinity,
+            maxArrayLength: Infinity,
+        });
+    };
+} else if (globals.Deno) {
+    f = function (v) {
+        return globals.Deno.inspect(v, {
+            depth: Infinity,
+            sorted: true,
+            trailingComma: true,
+            compact: false,
+            iterableLimit: Infinity,
+            // getters should be true in assertEquals.
+            getters: true,
+            strAbbreviateSize: Infinity,
+        });
+    };
+}
 /**
  * Converts the input into a string. Objects, Sets and Maps are sorted so as to
  * make tests less flaky.
@@ -18,20 +49,6 @@
  * assertEquals(format(new Map([[1, 2]])), "Map(1) {\n  1 => 2,\n}");
  * ```
  */
-import * as dntShim from "../_dnt.shims.js";
 export function format(v) {
-    // deno-lint-ignore no-explicit-any
-    const { Deno } = dntShim.dntGlobalThis;
-    return typeof Deno?.inspect === "function"
-        ? Deno.inspect(v, {
-            depth: Infinity,
-            sorted: true,
-            trailingComma: true,
-            compact: false,
-            iterableLimit: Infinity,
-            // getters should be true in assertEquals.
-            getters: true,
-            strAbbreviateSize: Infinity,
-        })
-        : `"${String(v).replace(/(?=["\\])/g, "\\")}"`;
+    return f(v);
 }

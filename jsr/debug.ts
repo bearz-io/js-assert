@@ -1,15 +1,12 @@
-const g = globalThis as {
-    // deno-lint-ignore no-explicit-any
-    [key: string]: any;
-};
+import { globals } from "./internal/globals.ts";
 
 let debugTests = false;
 
-if (g.DEBUG_TESTS) {
+if (globals.DEBUG_TESTS) {
     debugTests = true;
 }
 
-if (g.process && g.process.env && g.process.env.DEBUG_TESTS) {
+if (globals.process && globals.process.env && globals.process.env.DEBUG_TESTS) {
     debugTests = true;
 }
 

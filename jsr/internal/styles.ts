@@ -4,18 +4,13 @@
 // on npm.
 
 // This code is vendored from `fmt/colors.ts`.
-
-// deno-lint-ignore no-explicit-any
-const { Deno } = globalThis as any;
-const noColor = typeof Deno?.noColor === "boolean" ? Deno.noColor as boolean : false;
+import { enabled } from "./color-detection.ts";
 
 interface Code {
     open: string;
     close: string;
     regexp: RegExp;
 }
-
-const enabled = !noColor;
 
 function code(open: number[], close: number): Code {
     return {
